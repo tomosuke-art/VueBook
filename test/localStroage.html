@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
+
+</head>
+<body>
+  <div id="app">
+    <h2>Books</h2>
+    <div v-for="(book, n) in books">
+      <p>
+        <span class="cat">{{ book }}</span>
+        <button @click="removeBook(n)">Remove</button>
+      </p>
+    </div>
+  
+    <p>
+      <input v-model="newBook">
+      <button @click="addBook">Add Book</button>
+    </p>
+  
+  </div>
+  <script>
+// LocalStorageとは
+// サーパー通信なし、有効期限なし（ブラウザを閉じても消えない）
+// localStorage.getItem(key) -> 取得
+// localStorage.setItem(key) -> 保存
+// localStorage.removeItem(key) -> 削除
+
+    const STORAGE_KEY = 'books' // 複数あるから複数形
+    let app = new Vue({
+      el: '#app',
+      data(){
+        return{
+          books: [], 
+          newBook: null // 空
+        }
+      },
+      // localStorageを設定
+      mounted() {
+        if (localStorage.getItem(STORAGE_KEY)) { // 設定の確認
+          try {
+            this.books = JSON.parse(localStorage.getItem(STORAGE_KEY)); // 取得 this.book = data()のbooks
+          } catch(e) {
+            localStorage.removeItem(STORAGE_KEY);
+          }
+        }
+      },
+      methods: {
+        addBook() {
+          // 実際に何かしたことを入力する
+          if (!this.newBook) {
+            return;
+          }
+
+          this.books.push(this.newBook);
+          this.newBook = '';
+          this.saveBooks();
+        },
+        removeBook(x) {
+          this.books.splice(x, 1);
+          this.saveBooks();
+        },
+        saveBooks() {
+          // localStorageに保存
+          // オブジェクトのままでは保存できない
+          // 文字列保存のためデコードする
+          const parsed = JSON.stringify(this.books);
+          localStorage.setItem(STORAGE_KEY, parsed);
+        }
+      }
+    })
+  </script>
+</body>
+</html>
