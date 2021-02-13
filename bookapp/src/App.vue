@@ -3,7 +3,9 @@
     <Header/>
       <v-main>
         <v-container>
+          <!-- 親側でデータを設定 -->
           <router-view
+          :books="books"
           @add-book-list="addBook"/>
         </v-container>
       </v-main>
@@ -55,6 +57,12 @@ export default {
       });
       // this.newBook = '';
       this.saveBooks();
+      // 追加した本の編集画面に移動
+
+      // 最後に追加したidの取得コード
+      // console.log(this.books.slice(-1)[0].id)
+      this.goToEditPage(this.books.slice(-1)[0].id)
+
     },
     removeBook(x) {
       this.books.splice(x, 1);
@@ -66,6 +74,11 @@ export default {
       // 文字列保存のためデコードする
       const parsed = JSON.stringify(this.books);
       localStorage.setItem(STORAGE_KEY, parsed);
+    },
+    // 編集画面へ移動
+    goToEditPage(id){
+      // idが変数で変わるためテンプレート構文で記述
+      this.$router.push(`/edit/${id}`);
     }
   }
 };
