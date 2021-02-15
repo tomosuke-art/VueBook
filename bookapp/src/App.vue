@@ -3,10 +3,11 @@
     <Header/>
       <v-main>
         <v-container>
-          <!-- 親側でデータを設定 -->
+          <!-- 親側でデータを受け取る -->
           <router-view
           :books="books"
-          @add-book-list="addBook"/>
+          @add-book-list="addBook"
+          @update-book-info="updateBookInfo"/>
         </v-container>
       </v-main>
     <Footer/>
@@ -74,6 +75,24 @@ export default {
       // 文字列保存のためデコードする
       const parsed = JSON.stringify(this.books);
       localStorage.setItem(STORAGE_KEY, parsed);
+    },
+    // 引数eで子のコンポーネントから情報を取得
+    updateBookInfo(e){
+      // オブジェクトを作成
+      const updateInfo = {
+        id: e.id,
+        readDate: e.readDate,
+        memo: e.memo,
+        title: this.books[e.id].title,
+        image: this.books[e.id].image,
+        description: this.books[e.id].description
+      }
+      // 配列の中身を置き換える(何番目か,一つ目,オブジェクト)
+      this.books.splice(e.id, 1, updateInfo)
+      // LocalStorageに保存
+      this.saveBooks()
+      // 保存後にトップへ戻る
+      this.$router.push('/')
     },
     // 編集画面へ移動
     goToEditPage(id){

@@ -43,7 +43,8 @@
               </v-textarea>
               <v-card-actions>
                 <v-btn color="secondary" to="/">一覧に戻る</v-btn>
-                <v-btn color="info" >保存する</v-btn>
+                <!-- 本の情報を更新 -->
+                <v-btn color="info" @click="updateBookInfo">保存する</v-btn>
               </v-card-actions>
             </v-col>
           </v-row>
@@ -66,6 +67,16 @@ export default {
        book:'',
        date: new Date().toISOString().substr(0, 10),
        menu: false,
+     }
+   },
+   methods:{
+     updateBookInfo(){
+       // App.vueに渡す処理(イベントアップ)
+       this.$emit('update-book-info',{
+         id: this.$route.params.id,
+         readDate: this.date,
+         memo: this.book.memo
+       })
      }
    },
    // thisのアクセスはできない
