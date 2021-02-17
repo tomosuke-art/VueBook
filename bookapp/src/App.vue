@@ -69,8 +69,8 @@ export default {
       this.books.splice(x, 1);
       this.saveBooks();
     },
+    // localStorageに保存
     saveBooks() {
-      // localStorageに保存
       // オブジェクトのままでは保存できない
       // 文字列保存のためデコードする
       const parsed = JSON.stringify(this.books);

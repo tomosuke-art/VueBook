@@ -65,7 +65,9 @@ export default {
      return{
        // オブジェクト
        book:'',
-       date: new Date().toISOString().substr(0, 10),
+       // new Date()だと変更後も本日の日付になる
+       // date: new Date().toISOString().substr(0, 10),
+       date: '',
        menu: false,
      }
    },
@@ -86,6 +88,13 @@ export default {
       // DOM更新がされた後に更新するように
       vm.$nextTick(()=>{
         vm.book = vm.books[vm.$route.params.id]
+        // 日付が登録されていればその日の日付
+        if(vm.book.readDate){
+          vm.date = vm.book.readDate
+        // 日付が登録されていなければ本日の日付
+        }else{
+          vm.date = new Date().toISOString().substr(0, 10)
+        }
         console.log(vm.book)
       })
     })
