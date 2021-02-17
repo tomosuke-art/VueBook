@@ -1,5 +1,5 @@
 <template>
-  <div>BookIndex
+  <div><h1 style="text-align:center">読んだ本の一覧</h1>
     <v-row>
       <v-col cols="6">
         <v-btn color="primary" to="/search">検索する</v-btn>

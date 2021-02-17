@@ -1,6 +1,7 @@
 <template>
   <v-app>
-    <Header/>
+    <Header
+    @delete-local-storage="deleteLocalStorage"/>
       <v-main>
         <v-container>
           <!-- 親側でデータを受け取る -->
@@ -98,6 +99,19 @@ export default {
     goToEditPage(id){
       // idが変数で変わるためテンプレート構文で記述
       this.$router.push(`/edit/${id}`);
+    },
+    // 削除処理
+    deleteLocalStorage(){
+      // 削除してもいいか確認メッセージ
+      const isDeleted = 'LocalStorageのデータを削除してもいいですか'
+      if(window.confirm(isDeleted)){
+        // 二つ目の引数を空 -> 空の状態で上書き
+        localStorage.setItem(STORAGE_KEY, '')
+        localStorage.removeItem(STORAGE_KEY)
+        // dataの中も空に
+        this.books = []
+        window.location.reload()
+      }
     }
   }
 };

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div><h1>本の検索</h1>
     <v-row>
       <v-col cols="6">
         <v-text-field

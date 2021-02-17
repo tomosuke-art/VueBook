@@ -6,6 +6,12 @@
       dark
      >
       <v-spacer></v-spacer>
+      <!-- 一括削除ボタン -->
+      <v-btn 
+      color="error"
+      @click="deleteLocalStorage">
+      削除
+      </v-btn>
     </v-app-bar>
   </div>
 
@@ -13,7 +19,12 @@
 
 <script>
 export default {
-
+  name: 'Header',
+  methods:{
+    deleteLocalStorage(){
+      this.$emit('delete-local-storage')
+    }
+  }
 }
 </script>
 
