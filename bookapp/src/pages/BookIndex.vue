@@ -2,7 +2,9 @@
   <div><h1 style="text-align:center">読んだ本の一覧</h1>
     <v-row>
       <v-col cols="6">
-        <v-btn color="primary" to="/search">検索する</v-btn>
+        <v-btn color="primary" to="/search">
+          検索<v-icon>mdi-card-search-outline</v-icon>
+        </v-btn>
       </v-col>
     </v-row>
     <v-row>

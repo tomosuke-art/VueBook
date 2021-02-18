@@ -1,5 +1,10 @@
 <template>
-  <div></div>
+  <v-app-var
+  app
+  color="primary"
+  dark>
+
+  </v-app-var>
 </template>
 
 <script>

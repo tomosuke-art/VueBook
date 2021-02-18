@@ -13,7 +13,7 @@
         <v-btn
         color="primary"
         @click="search(keyword)">
-        検索する
+        検索<v-icon>mdi-card-search-outline</v-icon>
         </v-btn>
       </v-col>
       <v-col cols="3">

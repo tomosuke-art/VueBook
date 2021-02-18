@@ -4,13 +4,15 @@
       app
       color="primary"
       dark
-     >
+     ><v-btn color="primary" to="/">
+      <v-icon>mdi-book-open-page-variant-outline</v-icon>
+     </v-btn>
       <v-spacer></v-spacer>
       <!-- 一括削除ボタン -->
       <v-btn 
       color="error"
       @click="deleteLocalStorage">
-      削除
+       <v-icon>mdi-trash-can-outline</v-icon>
       </v-btn>
     </v-app-bar>
   </div>
