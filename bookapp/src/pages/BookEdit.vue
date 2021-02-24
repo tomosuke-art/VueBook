@@ -9,9 +9,9 @@
             </v-col>
             <v-col cols="8">
               <v-card-title>
-                タイトル :{{ book.title }}
+                {{ book.title }}
               </v-card-title>
-              読んだ日:
+              Date:
               <!-- カレンダー表示(日本語で) -->
               <v-menu
                 v-model="menu"
@@ -37,7 +37,7 @@
                 </v-date-picker>
 
               </v-menu>
-              感想:<v-textarea
+               BookMemo:<v-textarea
               class="mx-2" v-model="book.memo">
               {{ book.memo }}
               </v-textarea>

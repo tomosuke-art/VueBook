@@ -1,5 +1,5 @@
 <template>
-  <div><h1 style="text-align:center">読んだ本の一覧</h1>
+  <div><h1 style="text-align:center">BookList</h1>
     <v-row>
       <v-col cols="6">
         <v-btn color="primary" to="/search">
@@ -16,14 +16,18 @@
             </v-col>
             <v-col cols="8">
               <v-card-title>{{ book.title }}</v-card-title>
-              読んだ日:{{book.readDate}}<br>
-              感想:{{book.memo}}
+              <v-icon>mdi-calendar-blank</v-icon>{{book.readDate}}<br>
+              <v-icon>mdi-message-bulleted</v-icon>{{book.memo}}
               <v-spacer></v-spacer>
               <v-card-actions>
                 <!-- edit/n番目 -->
                 <v-btn :to="{name: 'BookEdit' , params: {id: book.id}}"
                 color="indigo" fab small dark>
                  <v-icon>mdi-pencil</v-icon>
+                </v-btn>
+                <v-btn color="error" 
+                 @click="deleteBook(index)">
+                  <v-icon>mdi-trash-can-outline</v-icon>
                 </v-btn>
               </v-card-actions>
             </v-col>
@@ -35,9 +39,14 @@
 </template>
 
 <script>
+// const key = 'books' 
 export default {
+
   props:{
     books:Array
+  },
+  methods:{
+    
   }
 }
 </script>

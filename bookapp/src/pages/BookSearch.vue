@@ -1,6 +1,6 @@
 <template>
-  <div><h1>本の検索</h1>
-    <v-row>
+  <div class="search"><h1>Book Search</h1>
+    <v-row justify="center" align-content="center">
       <v-col cols="6">
         <v-text-field
         label="本のタイトルを検索"
@@ -8,7 +8,7 @@
         </v-text-field>
       </v-col>
     </v-row>
-    <v-row>
+    <v-row justify="center" align-content="center">
       <v-col cols="3">
         <v-btn
         color="primary"
@@ -102,5 +102,7 @@ export default {
 </script>
 
 <style>
-
+ .search{
+   text-align: center;
+ }
 </style>
